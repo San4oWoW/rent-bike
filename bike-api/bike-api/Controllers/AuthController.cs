@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Domain.Entities; // Убедитесь, что этот namespace соответствует вашим User и Role классам
+using Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore;
+using bike_api.Models;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -21,16 +20,15 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(string login, string password)
+    public async Task<IActionResult> Login([FromBody] AuthModel authModel)
     {
-        var user = await _userManager.FindByNameAsync(login);
-        var role = await _userManager.GetRolesAsync(user); 
-        if (user != null && await _userManager.CheckPasswordAsync(user, password))
+        var user = await _userManager.FindByEmailAsync(authModel.Email);
+        if (user != null && await _userManager.CheckPasswordAsync(user, authModel.Password))
         {
-            var token = "Bearer " +  GenerateJwtToken(user);
-            return Ok(new { token, role });
+            var roles = await _userManager.GetRolesAsync(user);
+            var token = GenerateJwtToken(user);
+            return Ok(new { token, roles });
         }
-
         return Unauthorized();
     }
 
@@ -51,21 +49,33 @@ public class AuthController : ControllerBase
         }
     }
 
-    private string GenerateJwtToken(User user)
+    private async Task<string> GenerateJwtToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes("здесь_должен_быть_длинный_секретный_ключ");
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Id),
+            new Claim(ClaimTypes.Name, user.UserName),
+        };
+
+        // Предполагается, что _userManager - это ваш UserManager<User>
+        var userRoles = await _userManager.GetRolesAsync(user);
+
+        // Добавляем роли пользователя как отдельные claims
+        foreach (var userRole in userRoles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, userRole));
+        }
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                new Claim(ClaimTypes.Name, user.UserName),
-            }),
-            Expires = DateTime.UtcNow.AddDays(7), 
+            Subject = new ClaimsIdentity(claims),
+            Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+
 }

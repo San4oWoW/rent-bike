@@ -5,11 +5,8 @@ namespace EFCore
 {
     public class RentContext : DbContext
     {
-        public RentContext(DbContextOptions<RentContext> options) : base(options)
-        {
-        }
-        public DbSet<Test> Test { get; set; }
-        public DbSet<Test2> Test2 { get; set; }
-
+        public RentContext(DbContextOptions<RentContext> options) : base(options) {}
+        
+        public DbSet<Bike> Bikes { get; set; }
     }
 }
