@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bike-api", "bike-api\bike-api.csproj", "{0ECED416-5F47-4082-99CB-D3D77F4603F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bike-api", "bike-api\bike-api.csproj", "{0ECED416-5F47-4082-99CB-D3D77F4603F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore", "EFCore\EFCore.csproj", "{5128B2AD-E780-4B3A-B3AA-9BD89CA25E87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "EFCore\EFCore.csproj", "{5128B2AD-E780-4B3A-B3AA-9BD89CA25E87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{7ABF8D40-BDA8-4D69-8123-2C22874A57B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{7ABF8D40-BDA8-4D69-8123-2C22874A57B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{44FBE572-C2F3-4D23-A276-6CE20F611943}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7ABF8D40-BDA8-4D69-8123-2C22874A57B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ABF8D40-BDA8-4D69-8123-2C22874A57B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ABF8D40-BDA8-4D69-8123-2C22874A57B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44FBE572-C2F3-4D23-A276-6CE20F611943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44FBE572-C2F3-4D23-A276-6CE20F611943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44FBE572-C2F3-4D23-A276-6CE20F611943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44FBE572-C2F3-4D23-A276-6CE20F611943}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

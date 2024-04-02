@@ -1,3 +1,4 @@
+using bike_api.Helpers;
 using Domain.Entities;
 using EFCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -124,6 +125,7 @@ void AddServices(WebApplicationBuilder builder)
             options.Password.RequireLowercase = false;
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 5;
+            options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ " + CyrillicHelper.GetCyrillicAlphabet();
         })
         .AddRoles<IdentityRole>()
         .AddSignInManager<SignInManager<User>>()
