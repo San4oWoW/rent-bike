@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage from './useLocalStorage';
+import BikesExportComponent from './BikesExportComponent';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -78,6 +79,7 @@ const Header = () => {
           <option value="Пермь">Пермь</option>
         </select>
       </div>
+        <BikesExportComponent/>
         <button onClick={() => navigate("/")}>Домой</button>
         {isAdmin && <button onClick={() => navigate('/add-bike')}>Добавить товар</button>}
         <button onClick={() => navigate('/basket')}>Корзина {cartCount}</button>
