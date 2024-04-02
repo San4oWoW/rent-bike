@@ -18,7 +18,7 @@ const AddBikeForm = () => {
 
         try {
             const token = localStorage.getItem('token'); // Предположим, что токен хранится в localStorage
-            const response = await fetch('http://localhost:5103/api/RentBikeControllers', { // Правильный URL
+            const response = await fetch('api/RentBikeControllers', { // Правильный URL
             method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,

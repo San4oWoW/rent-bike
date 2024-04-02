@@ -38,7 +38,7 @@ const Header = () => {
 
   async function checkIfAdmin() {
     const token = localStorage.getItem('token');
-    const response = await fetch('http://localhost:5103/api/RentBikeControllers/check', {
+    const response = await fetch('api/RentBikeControllers/check', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`

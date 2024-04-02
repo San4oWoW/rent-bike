@@ -22,7 +22,7 @@ services:
       dockerfile: ./bike-api/Dockerfile
     restart: always
     ports:
-      - "5103:8080"
+      - "5000:8080"
     depends_on:
       - postgres
     environment:
@@ -31,14 +31,21 @@ services:
 
   front:
     ports:
-        - "3000:3000"
+        - "5001:3000"
     build:
       context: ./front
       dockerfile: Dockerfile
     depends_on:
       - bike-api
-    environment:
-      REACT_APP_API_URL: "http://bike-api:5103"
+  
+  proxy:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"  
+
 
 volumes:
   postgres_data:

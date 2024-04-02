@@ -26,7 +26,7 @@ const Basket = () => {
         }
     
         try {
-            const response = await fetch('http://localhost:5103/api/RentBikeControllers/RentBike', {
+            const response = await fetch('api/RentBikeControllers/RentBike', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -55,7 +55,7 @@ const Basket = () => {
             return;
         }
     
-        const url = `http://localhost:5103/api/Basket?id=${id}`;
+        const url = `api/Basket?id=${id}`;
     
         try {
             const response = await fetch(url, {

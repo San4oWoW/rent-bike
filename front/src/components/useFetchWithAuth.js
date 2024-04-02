@@ -27,7 +27,7 @@ const useFetchWithAuth = (url, method = 'GET', body = null) => {
                     body: method !== 'GET' ? JSON.stringify(body) : null, // Добавляем тело запроса для методов, отличных от GET
                 };
 
-                const response = await fetch('http://localhost:5103/api/' + url, config);
+                const response = await fetch('api/' + url, config);
 
                 if (!response.ok) {
                     throw new Error(`Ошибка запроса: ${response.statusText}`);

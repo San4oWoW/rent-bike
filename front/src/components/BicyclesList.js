@@ -16,7 +16,7 @@ function BicyclesList() {
 
     async function checkIfAdmin() {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5103/api/RentBikeControllers/check', {
+        const response = await fetch('api/RentBikeControllers/check', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -69,7 +69,7 @@ function BicyclesList() {
             alert("Пользователь не авторизован.");
             return;
         }
-        const url = `http://localhost:5103/api/Basket?id=${id}`;
+        const url = `api/Basket?id=${id}`;
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -99,7 +99,7 @@ function BicyclesList() {
             return;
         }
     
-        const url = `http://localhost:5103/api/RentBikeControllers?id=${id}`;
+        const url = `api/RentBikeControllers?id=${id}`;
     
         
             const response = await fetch(url, {
