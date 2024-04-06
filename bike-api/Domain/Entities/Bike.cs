@@ -1,4 +1,7 @@
-﻿namespace Domain.Entities
+﻿using EFCore.Enums;
+using System.Collections.Generic; // Необходимо для использования List<>
+
+namespace Domain.Entities
 {
     public class Bike
     {
@@ -10,6 +13,10 @@
         public bool IsReserved { get; set; }
         public bool IsDeleted { get; set; }
         public string? UserId { get; set; }
+        public CategryEnum CategryEnum { get; set; }
+
+        public ICollection<Comments> Comments { get; set; } = new List<Comments>();
+
         public Bike() { }
     }
 }
