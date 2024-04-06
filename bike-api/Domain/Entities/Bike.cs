@@ -1,4 +1,7 @@
-﻿namespace Domain.Entities
+﻿using EFCore;
+using EFCore.Enums;
+
+namespace Domain.Entities
 {
     public class Bike
     {
@@ -10,6 +13,8 @@
         public bool IsReserved { get; set; }
         public bool IsDeleted { get; set; }
         public string? UserId { get; set; }
+        public CategryEnum Categry { get; set; }
+        public Comments Comments { get; set; }
         public Bike() { }
     }
 }
