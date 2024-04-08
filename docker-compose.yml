@@ -13,25 +13,17 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    ports:
-      - '5432:5432'
+
 
   bike-api:
     build:
       context: .
       dockerfile: ./bike-api/Dockerfile
     restart: always
-    ports:
-      - "5000:8080"
     depends_on:
       - postgres
-    environment:
-        RentContext: "Host=postgres;Port=5432;Database=RentBikeDB;Username=postgres;Password=postgres"
-        IdentityContext: "Host=postgres;Port=5432;Database=Identity;Username=postgres;Password=postgres"
-
+      
   front:
-    ports:
-        - "5001:3000"
     build:
       context: ./front
       dockerfile: Dockerfile
